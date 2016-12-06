@@ -1,0 +1,75 @@
+#!/usr/bin/env node
+'use strict';
+
+/**
+ * #!/usr/bin/env node 标志：表示用 nodeJs 来启动脚本
+ * todo: Commander 提供了用户命令行输入和参数解析强大功能，用于封装node自定义命令行
+ * 参考网址：https://segmentfault.com/a/1190000002918295#articleHeader15
+ */
+const config = require('../package.json');
+const program = require('commander');
+const spawn = require('win-spawn'); // 接受3个参数：1、command string 将要运行的命令（也可以直接映射文件） 2、args array 字符串参数数组 3、options 配置对象，详情查看nodeJs spawn
+const path = require('path');
+const fileSystem = require('fs');
+const exists = fileSystem.existsSync;
+
+program
+    .version(config.version, '-v, --version')
+    .usage('<command> [options]')
+    .on('--help', function () {
+        // 在commander自动生成的help末尾添加额外的信息
+        console.log('  Command:');
+        console.log();
+        console.log('    new [appName]  Init a new dva application in the current folder');
+        console.log('    init [options] Init a new dva application in the current folder');
+        console.log('          --demo       参数：安装demo');
+        console.log('          --no-install 参数：安装模板完成之后顺便安装依赖文件, default: true');
+        console.log();
+        console.log('  All commands can be run with -h (or --help) for more information.(en)');
+        console.log('  所有命令符都可以通过运行dvantd -h(长参数：--help)来获取更多信息。(zh-cn)');
+    })
+    .option('-i, --info', 'output package information', function () {
+        console.log('package.json:');
+        console.log(config);
+        process.exit(1); // 退出当前进程
+    })
+    .parse(process.argv);
+
+/**
+ * 检测可执行文件是否存在
+ * @param subCmd 命令行参数名称
+ * @returns {string}
+ */
+function executable(subCmd) {
+    // 根据传入的参数将代码导引至bin文件夹下的相应文件
+    const file = path.join(__dirname, 'dvantd-' + subCmd);
+    if (exists(file)) {
+        return file;
+    }
+}
+
+function wrap(sp) {
+    sp.on('close', function (code) {
+        process.exit(code);
+    });
+}
+
+let subCmd = program.args[0];
+const args = process.argv.slice(3);
+if (!subCmd) {
+    // 没有参数默认打印help
+    program.help();
+} else {
+    // 根据参数检测可执行文件是否存在
+    const bin = executable(subCmd);
+    if (bin) {
+        console.log("执行脚本：" + bin);
+        // spawn开启子进程执行指定程序:
+        wrap(spawn(bin, args, { stdio: 'inherit', customFds: [0, 1, 2] }));
+    } else {
+        // 未知参数处理
+        console.log();
+        console.log('未知参数：' + subCmd + " <请查看详细使用方法>");
+        program.help();
+    }
+}

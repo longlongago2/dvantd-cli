@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+
+program
+    .option('--demo', '安装demo')
+    .option('--no-install', '安装模板完成之后顺便安装依赖文件, default: true')
+    .parse(process.argv);
+
+require('../lib/init')(program);
