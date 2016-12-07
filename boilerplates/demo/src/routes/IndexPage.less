@@ -3,9 +3,46 @@
   margin: 100px;
 }
 
+.title {
+  height: 40px;
+  font: bold 15px "Microsoft YaHei";
+  overflow: hidden;
+}
+
+.title:after {
+  content: '';
+  clear: both;
+}
+
+.logo {
+  height: 30px;
+  width: 30px;
+  display: block;
+  float: left;
+  overflow: hidden;
+}
+
+.logo img {
+  width: 30px;
+  height: 30px;
+}
+
+.word {
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  float: left;
+  padding: 0 5px;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .list {
   margin-top: 20px;
 }
-.list li{
-  margin:10px 0;
+
+.list li {
+  margin: 10px 0;
 }

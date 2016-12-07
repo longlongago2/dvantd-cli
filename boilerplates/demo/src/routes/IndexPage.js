@@ -6,10 +6,17 @@ import styles from './IndexPage.less';
 function IndexPage() {
   return (
     <div className={styles.normal}>
-      <h1>My dva!</h1>
+      <div className={styles.title}>
+        <div className={styles.logo}>
+          <img src={require("../static/logo.png")}/>
+        </div>
+        <div className={styles.word}>
+          My dva + Ant Design !
+        </div>
+      </div>
       <hr />
       <ul className={styles.list}>
-        <li>dva框架主要集成 <code> react react-redux react-router react-dom </code> antd </li>
+        <li>dva框架主要集成 <b> react / react-redux / react-router / react-saga / ant-design </b></li>
         <li><Link to="/products">跳转./products</Link></li>
       </ul>
     </div>
