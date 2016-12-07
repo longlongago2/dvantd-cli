@@ -6,7 +6,10 @@
   "dependencies": {
     "dva": "^1.1.0",
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "antd": "^2.3.2",
+    "babel-plugin-import": "^1.0.1",
+    "jquery": "^3.1.1"
   },
   "devDependencies": {
     "atool-build": "^0.8.0",
@@ -20,6 +23,7 @@
     "dora-plugin-webpack": "^0.8.1",
     "dora-plugin-webpack-hmr": "^0.2.1",
     "expect": "^1.20.2",
+    "open-browser-webpack-plugin": "0.0.3",
     "redbox-react": "^1.2.10"
   },
   "scripts": {

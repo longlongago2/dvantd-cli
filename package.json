@@ -1,6 +1,6 @@
 {
   "name": "dvantd-cli",
-  "version": "0.1.2",
+  "version": "0.1.6",
   "description": "基于dva和antd的脚手架",
   "bin": {
     "dvantd": "./bin/dvantd"

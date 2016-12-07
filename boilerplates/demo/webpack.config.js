@@ -13,8 +13,8 @@ module.exports = function (webpackConfig, env) {
     style: 'css',
   }]);
 
-  // 定义全局变量
   webpackConfig.plugins.push(
+    // 定义全局变量
     new webpack.ProvidePlugin({
       $: 'jquery',
       api: path.join(__dirname, './src/utils/api.js')

@@ -26,8 +26,8 @@ function init({ demo, install }) {
         .pipe(template(dest, cwd))
         .pipe(vfs.dest(dest))
         .on('end', function () {
-            info('rename', 'gitignore -> .gitignore');
-            renameSync(join(dest, 'gitignore'), join(dest, '.gitignore'));
+            info('rename', 'gitignore -> .gitignore'); // boilerplates 里的 gitignore 没有写点(.)，是为了在开发的时候不让模板里的gitignore起作用）,因为已经在dvantd-cli 存在.gitignore了
+            renameSync(join(dest, 'gitignore'), join(dest, '.gitignore')); // 安装后需要写点（起作用了）
             if (install) {
                 info('run', 'npm install');
                 require('./install')(printSuccess);

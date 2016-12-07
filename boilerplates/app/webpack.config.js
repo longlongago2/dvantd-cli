@@ -1,7 +1,28 @@
 const webpack = require('atool-build/lib/webpack');
+const path = require('path');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
-module.exports = function(webpackConfig, env) {
+module.exports = function (webpackConfig, env) {
   webpackConfig.babel.plugins.push('transform-runtime');
+
+  // babel-plugin-import: Import lib Ant-Design and style CSS as required
+  webpackConfig.babel.plugins.push(['import', {
+    libraryName: 'antd',
+    style: 'css',
+  }]);
+
+  webpackConfig.plugins.push(
+    // global variable
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      api: path.join(__dirname, './src/utils/api.js')
+    }),
+    // open browser automatically after command 'npm start'
+    new OpenBrowserPlugin({
+      url: 'http://localhost:8989',
+      browser: 'chrome'
+    })
+  );
 
   // Support hmr
   if (env === 'development') {
@@ -12,13 +33,13 @@ module.exports = function(webpackConfig, env) {
   }
 
   // Don't extract common.js and common.css
-  webpackConfig.plugins = webpackConfig.plugins.filter(function(plugin) {
+  webpackConfig.plugins = webpackConfig.plugins.filter(function (plugin) {
     return !(plugin instanceof webpack.optimize.CommonsChunkPlugin);
   });
 
   // Support CSS Modules
   // Parse all less files as css module.
-  webpackConfig.module.loaders.forEach(function(loader, index) {
+  webpackConfig.module.loaders.forEach(function (loader, index) {
     if (typeof loader.test === 'function' && loader.test.toString().indexOf('\\.less$') > -1) {
       loader.include = /node_modules/;
       loader.test = /\.less$/;
