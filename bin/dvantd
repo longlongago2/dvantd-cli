@@ -8,7 +8,7 @@
  */
 const config = require('../package.json');
 const program = require('commander');
-const spawn = require('win-spawn'); // 接受3个参数：1、command string 将要运行的命令（也可以直接映射文件） 2、args array 字符串参数数组 3、options 配置对象，详情查看nodeJs spawn
+const spawn = require('cross-spawn-async'); // 接受3个参数：1、command string 将要运行的命令（也可以直接映射文件） 2、args array 字符串参数数组 3、options 配置对象，详情查看nodeJs spawn
 const path = require('path');
 const fileSystem = require('fs');
 const exists = fileSystem.existsSync;
