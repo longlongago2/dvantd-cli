@@ -112,8 +112,8 @@ export default {
         yield put({ type: 'operationFailed' });
       }
     },
-    // action : products/delete
-    * delete({ payload }, { call, put }) {
+    // action : products/delete  加引号因为delete是关键字
+    * 'delete'({ payload }, { call, put }) {
       yield put({ type: 'showLoading' });                    // 0、显示loading画面
       const { data } = yield call(remove, { id: payload });  // 1、先调用接口更改数据库数据
       if (data && data.success) {                            // 2、如果成功就进行下一步，更新state

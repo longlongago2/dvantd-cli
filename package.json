@@ -1,12 +1,13 @@
 {
   "name": "dvantd-cli",
-  "version": "0.1.6",
-  "description": "基于dva和antd的脚手架",
+  "version": "0.2.1",
+  "description": "The command-line utility based on dva and antd",
   "bin": {
     "dvantd": "./bin/dvantd"
   },
   "scripts": {
-    "build": "rimraf lib && babel src --out-dir lib"
+    "build": "rimraf lib && babel src --out-dir lib",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/dvantd/dvantd-cli/README.md",
   "babel": {
+    "minified": true,
     "presets": [
       "es2015",
       "react",
@@ -30,7 +32,8 @@
     ],
     "plugins": [
       "add-module-exports",
-      "transform-runtime"
+      "transform-runtime",
+      "remove-comments"
     ]
   },
   "dependencies": {
@@ -47,6 +50,7 @@
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-remove-comments": "^2.0.0",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
