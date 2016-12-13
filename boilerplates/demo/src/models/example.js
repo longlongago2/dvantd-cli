@@ -4,7 +4,7 @@
 export default {
   // 1.model领域名称
   namespace: 'example',
-  // 2.状态map
+  // 2.state map
   state: {},
   // 3.订阅数据源（一般订阅默认加载的数据，例如初始数据）
   subscriptions: {

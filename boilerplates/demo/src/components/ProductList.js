@@ -2,11 +2,11 @@
  * todo: 函数式无状态组件(Stateless Functional Component) 详情见笔记
  */
 import React, { PropTypes } from 'react';
-import { Table, Popconfirm, Button, Form, Switch } from 'antd';
+import { Table, Popconfirm, Button, Form, Switch, Icon } from 'antd';
 
 const FormItem = Form.Item;
 const ProductList = ({
-  onDelete, onToggle, onInsertItem, onEditItem, dataSource, loading, bordered
+  onDelete, onToggle, onInsertItem, onEditItem, onUndo, onReload, dataSource, loading, bordered
 }) => {
   const tableHeader = () => {
     return (
@@ -92,6 +92,16 @@ const ProductList = ({
         <FormItem label="Insert">
           <Button type="primary" size="small" onClick={onInsertItem}>新增</Button>
         </FormItem>
+        <FormItem label="Redux-undo">
+          <Button type="primary" size="small" onClick={onUndo}>
+            <Icon type="rollback"/>撤销
+          </Button>
+        </FormItem>
+        <FormItem label="reload">
+          <Button type="primary" size="small" onClick={onReload}>
+            刷新数据
+          </Button>
+        </FormItem>
       </Form>
       <Table {...productListTableProps}/>
     </div>
@@ -103,6 +113,8 @@ ProductList.propTypes = {
   onToggle: PropTypes.func.isRequired,
   onInsertItem: PropTypes.func.isRequired,
   onEditItem: PropTypes.func.isRequired,
+  onUndo: PropTypes.func.isRequired,
+  onReload: PropTypes.func.isRequired,
   dataSource: PropTypes.array.isRequired,
   loading: PropTypes.any.isRequired,
   bordered: PropTypes.any.isRequired
