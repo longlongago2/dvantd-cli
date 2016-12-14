@@ -11,7 +11,7 @@ export default {
   },
 
   effects: {
-    *fetchRemote({ payload }, { call, put }) {
+    * fetchRemote({ payload }, { call, put }) {
     },
   },
 
@@ -21,4 +21,5 @@ export default {
     },
   },
 
-}
+};
+

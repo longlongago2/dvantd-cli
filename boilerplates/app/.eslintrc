@@ -1,47 +1,63 @@
 {
   "parser": "babel-eslint",
   "extends": "eslint-config-airbnb",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": [
+    "react"
+  ],
   "rules": {
-    "quotes": [1],
-    "spaced-comment": [0],
-    "no-unused-vars": [0],
-    "no-empty": [0],
-    "react/wrap-multilines": [0],
-    "react/no-multi-comp": [0],
-    "no-constant-condition": [0],
-    "react/jsx-no-bind": [1],
-    "react/prop-types": [1],
-    "react/forbid-prop-types": [0],
-    "arrow-body-style": [0],
-    "react/prefer-stateless-function": [0],
-    "semi": [1],
-    "global-require": [0],
-    "no-shadow": [0],
-    "no-useless-computed-key": [0],
-    "no-underscore-dangle": [0],
-    "array-bracket-spacing":[0],
-    "func-names":[0],
-    "import/no-extraneous-dependencies":[1],
-    "prefer-arrow-callback":[1],
-    "no-param-reassign": [0],
-    "eol-last": [1],
-    "no-console": [1],
-    "react/jsx-filename-extension": [0],
-    "prefer-template": [0],
-    "import/newline-after-import": [1],
-    "import/no-dynamic-require": [0],
-    "max-len": [1],
-    "comma-dangle": [0],
-    "quote-props": [0],
-    "object-shorthand":[1],
-    "react/jsx-space-before-closing": [0],
-    "strict": [0],
-    "eqeqeq": [1]
+    "quotes": 1,
+    "spaced-comment": 0,
+    "no-unused-vars": 0,
+    "no-empty": 0,
+    "react/wrap-multilines": 0,
+    "react/no-multi-comp": 0,
+    "no-constant-condition": 0,
+    "react/jsx-no-bind": 1,
+    "react/prop-types": 1,
+    "react/forbid-prop-types": 0,
+    "arrow-body-style": 0,
+    "react/prefer-stateless-function": 0,
+    "semi": 1,
+    "global-require": 0,
+    "no-shadow": 0,
+    "no-useless-computed-key": 0,
+    "no-underscore-dangle": 0,
+    "array-bracket-spacing": 0,
+    "func-names": 0,
+    "import/no-extraneous-dependencies": 0,
+    "prefer-arrow-callback": 1,
+    //禁止对函数的参数重新进行无意义的赋值
+    "no-param-reassign": 0,
+    "eol-last": 1,
+    "no-console": 1,
+    //jsx代码不允许使用js格式
+    "react/jsx-filename-extension": 0,
+    "prefer-template": 0,
+    "import/newline-after-import": 1,
+    "import/no-dynamic-require": 0,
+    //每行的最大长度为100个字符，超过提醒
+    "max-len": 1,
+    //尾部逗号
+    "comma-dangle": 0,
+    "quote-props": 0,
+    "object-shorthand": 1,
+    // 标签自关闭前空格
+    "react/jsx-space-before-closing": 1,
+    "strict": 0,
+    // 判断用===
+    "eqeqeq": 0
   },
   "globals": {
-    "api": true
-  },
-  "ecmaFeatures": {
-    "experimentalObjectRestSpread": true
+    //全局变量
+    "api": true,
+    "$": true
   }
 }

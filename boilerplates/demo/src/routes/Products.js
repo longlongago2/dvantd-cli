@@ -107,7 +107,7 @@ const Products = ({ location, dispatch, products, dva_loading }) => {
       <p className={styles.fontTitle}> dva简单样例 </p>
       <Row type="flex" justify="center" align="middle">
         <Col span={16}>
-          <ProductList {...productsListProps}/>
+          <ProductList {...productsListProps} />
           <UserModalGen />
         </Col>
       </Row>

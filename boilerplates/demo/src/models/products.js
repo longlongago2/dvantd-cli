@@ -8,6 +8,7 @@
  */
 import { message } from 'antd';
 import { parse, stringify } from 'qs';
+import pathToRegexp from 'path-to-regexp';
 import { query, remove, update, insert, toggleUpdate } from '../services/products';
 
 export default {
@@ -25,7 +26,8 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen((location) => {
-        if (location.pathname === '/products') { // 请求首屏数据
+        // 由于 react-router 的限制，如果是rest参数(/item/:itemId)这里需使用 path-to-regexp 库来解决 url 匹配的问题。
+        if (pathToRegexp('/products').test(location.pathname)) { // 初始数据请求
           dispatch({
             type: 'query',
             payload: location.query,
